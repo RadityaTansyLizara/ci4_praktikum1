@@ -284,3 +284,4 @@ Kemudian ubah file app/Views/about.php seperti berikut.
 Selanjutnya refresh tampilan pada alamat http://localhost:8080/about
 
 ![Screenshot 2025-03-13 142448](https://github.com/user-attachments/assets/ebb95f40-087d-4923-8ce0-c9ff25ed2451)
+
