@@ -69,17 +69,19 @@ Secara default fitur ini belum aktif. Ketika terjadi error pada aplikasi akan di
 Semua jenis error akan ditampilkan sama. Untuk memudahkan mengetahui jenis errornya,
 maka perlu diaktifkan mode debugging dengan mengubah nilai konfigurasi pada environment
 variable CI_ENVIRONMENT menjadi development.
-![alt text](image/development.png)
+![CI_ENVIRONMENT](https://github.com/user-attachments/assets/81c6ea8a-4468-4ad4-83dc-e73e4fe61fb3)
+
 
 Ubah nama file env menjadi .env kemudian buka file tersebut dan ubah nilai variable
 CI_ENVIRONMENT menjadi development.
 #### Catatan : Kadang, CodeIgniter tidak membaca file .env karena masih dikomentari, pastikan tidak ada tanda # di depan CI_ENVIRONMENT.
 
-![alt text](image/parseerror.png)
+![Parse Erorr](https://github.com/user-attachments/assets/b60e4a62-e038-44b1-a62e-cc0210d363ce)
+
 
 Contoh error yang terjadi. Untuk mencoba error tersebut, ubah kode pada file
 app/Controller/Home.php hilangkan titik koma pada akhir kode return view('welcome_message').
-![alt text](image/coba.png)
+![Controller](https://github.com/user-attachments/assets/d8d2bf70-631d-4bf8-9f2f-089dfe4ea517)
 
 ## Memahami konsep MVC
 Codeigniter menggunakan konsep MVC. MVC meripakan singkatan dari Model-View-
@@ -102,7 +104,8 @@ Pada Codeigniter, request yang diterima oleh file index.php akan diarahkan ke Ro
 meudian oleh router tesebut diarahkan ke Controller.
 
 Router terletak pada file app/config/Routes.php
-![alt text](image/Routes.png)
+![Routers](https://github.com/user-attachments/assets/d522d906-925f-48b2-9f3e-19f33b627a42)
+
 
 Pada file tersebut kita dapat mendefinisikan route untuk aplikasi yang kita buat.
 Contoh:
@@ -121,10 +124,12 @@ $routes->get('/faqs', 'Page::faqs');
 Untuk mengetahui route yang ditambahkan sudah benar, buka CLI dan jalankan perintah berikut.
 
 php spark routes
-![alt text](image/sparkraoutes.png)
+![PHP Spark Router](https://github.com/user-attachments/assets/7cf3c723-4353-42f2-8b31-22820889dd7b)
+
 
 Selanjutnya coba akses route yang telah dibuat dengan mengakses alamat url http://localhost:8080/about
-![alt text](image/404.png)
+![404](https://github.com/user-attachments/assets/4247cf80-282f-438e-9945-ea2ccd84969d)
+
 
 Ketika diakses akan mucul tampilan error 404 file not found, itu artinya file/page tersebut tidak ada. Untuk dapat mengakses halaman tersebut, harus dibuat terlebih dahulu Contoller yang sesuai dengan routing yang dibuat yaitu Contoller Page.
 
