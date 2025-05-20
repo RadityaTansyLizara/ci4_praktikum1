@@ -30,21 +30,25 @@ klik Config -> PHP.ini
 ![alt text](image/ekstensi1.png)
 
 
-Lalu kalian bisa mencari ekstensi yang kalian butuhkan, jika ada yang belum diaktivasi kalian dapat mengaktifkan ekstensi tersebut, melalu XAMPP Control Panel, pada bagian Apache
-klik Config -> PHP.ini :
+Setelah itu, kalian bisa mencari ekstensi yang diperlukan. Jika ada ekstensi yang belum aktif, kalian bisa mengaktifkannya melalui XAMPP Control Panel dengan masuk ke bagian Apache, lalu klik Config dan pilih PHP.ini.
 
 ![alt text](image/ekstensi2.png)
 
 ![alt text](image/intl.png))
-* Contohnya disini extension=intl belum aktif, maka cara mengaktivasinya adalah dengan menghilangkan tanda ; (titik koma) pada ekstensi yang akan diaktifkan. Kemudian simpan kembali filenya dan restart Apache web server.
+* Sebagai contoh, di sini ekstensi extension=intl belum aktif. Untuk mengaktifkannya, cukup hapus tanda ; (titik koma) di awal baris ekstensi tersebut. Setelah itu, simpan kembali file tersebut dan lakukan restart pada Apache web server.
 
 ## Instalasi Codeigniter 4
-Untuk melakukan instalasi Codeigniter 4 dapat dilakukan dengan dua cara, yaitu cara manual
-dan menggunakan composer. Pada praktikum ini kita menggunakan cara manual.
-* Unduh Codeigniter dari website https://codeigniter.com/download
-* Extrak file zip Codeigniter ke direktori htdocs/lab11_ci.
-* Ubah nama direktory codeigniter4-framework-v4.x.xx menjadi ci4.
-* Buka browser dengan alamat http://localhost/lab11_ci/ci4/public/
+
+Instalasi CodeIgniter 4 bisa dilakukan dengan dua metode, yaitu secara manual atau menggunakan Composer. Pada praktikum ini, kita akan menggunakan metode manual.
+
+Pertama, unduh CodeIgniter melalui situs resminya di https://codeigniter.com/download
+
+Setelah itu, ekstrak file ZIP tersebut ke folder htdocs/lab11_ci
+
+Ganti nama folder codeigniter4-framework-v4.x.xx menjadi ci4
+
+Terakhir, buka browser dan akses alamat http://localhost/lab11_ci/ci4/public/
+
 
 ![Screenshot 2025-03-13 135606](https://github.com/user-attachments/assets/03f69c21-4a9a-4f7b-83e4-7f5267718c06)
 
@@ -55,9 +59,9 @@ Codeigniter 4 menyediakan CLI untuk mempermudah proses development. Untuk mengak
 ![Screenshot 2025-03-13 135805](https://github.com/user-attachments/assets/c627f06a-7e6e-40fc-9076-294812d4c80a)
 
 
-Arahkan lokasi direktori sesuai dengan direktori kerja project dibuat (Contoh : cd htdocs/lab11_ci/ci4)
+Sesuaikan lokasi direktori ke folder proyek yang sedang dikerjakan (misalnya: cd htdocs/lab11_ci/ci4)
 
-Perintah yang dapat dijalankan untuk memanggil CLI Codeigniter adalah:
+Untuk menjalankan CLI CodeIgniter, kamu bisa menggunakan perintah berikut:
 
 ### php spark
 ![Screenshot 2025-03-13 135856](https://github.com/user-attachments/assets/bea2b38d-957b-4104-a0b9-40827380f4a4)
@@ -71,9 +75,8 @@ Secara default fitur ini belum aktif. Ketika terjadi error pada aplikasi akan di
 ![Screenshot 2025-03-13 140423](https://github.com/user-attachments/assets/11bc4a29-a941-4c3f-954b-4d0be68103ed)
 
 
-Semua jenis error akan ditampilkan sama. Untuk memudahkan mengetahui jenis errornya,
-maka perlu diaktifkan mode debugging dengan mengubah nilai konfigurasi pada environment
-variable CI_ENVIRONMENT menjadi development.
+Semua error akan ditampilkan dengan cara yang sama. Agar lebih mudah dalam mengidentifikasi jenis error yang terjadi, kita perlu mengaktifkan mode debugging dengan mengatur nilai variabel environment CI_ENVIRONMENT menjadi development.
+
 ![CI_ENVIRONMENT](https://github.com/user-attachments/assets/81c6ea8a-4468-4ad4-83dc-e73e4fe61fb3)
 
 
@@ -89,26 +92,29 @@ app/Controller/Home.php hilangkan titik koma pada akhir kode return view('welcom
 ![Controller](https://github.com/user-attachments/assets/d8d2bf70-631d-4bf8-9f2f-089dfe4ea517)
 
 ## Memahami konsep MVC
-Codeigniter menggunakan konsep MVC. MVC meripakan singkatan dari Model-View-
-Controller. MVC merupakan konsep arsitektur yang umum digunakan dalam pengembangan aplikasi. Konsep MVC adalah memisahkan kode program berdasarkan logic proses, data, dan
-tampilan. Untuk logic proses diletakkan pada direktori Contoller, Objek data diletakkan pada direktori Model, dan desain tampilan diletakkan pada direktori View.
+CodeIgniter menerapkan konsep MVC, singkatan dari Model-View-Controller. MVC adalah arsitektur yang sering digunakan dalam pengembangan aplikasi karena memisahkan kode program berdasarkan fungsinya, yaitu logika proses, data, dan tampilan.
 
-Codeigniter menggunakan konsep pemrograman berorientasi objek dalam mengimplementasikan konsep MVC.
+Logika proses ditempatkan dalam folder Controller,
 
-Model merupakan kode program yang berisi pemodelan data. Data dapat berupa database ataupun sumber lainnya.
+Data dikelola dalam folder Model, dan
 
-View merupakan kode program yang berisi bagian yang menangani terkait tampilan user interface sebuah aplikasi. didalam aplikasi web biasanya pasti akan berhubungan dengan html dan css.
+Tampilan antarmuka dikelola dalam folder View.
 
-Controller merupakaan kode program yang berkaitan dengan logic proses yang menghubungkan antara view dan model. Controller berfungsi untuk menerima request dan data dari user kemudian diproses dengan menghubungkan bagian model dan view.
+CodeIgniter juga menggunakan pendekatan pemrograman berorientasi objek dalam penerapan konsep MVC ini.
+
+Model berisi kode yang bertugas memodelkan data, baik yang berasal dari database maupun sumber lainnya.
+
+View berisi bagian kode yang menangani tampilan antarmuka pengguna. Dalam aplikasi web, ini biasanya melibatkan HTML dan CSS.
+
+Controller berfungsi sebagai pengatur logika proses. Ia menghubungkan antara View dan Model, menerima request dari pengguna, memproses data, lalu menampilkan hasil melalui View.
 
 ## Routing dan Controller
-Routing merupakan proses yang mengatur arah atau rute dari request untuk menentukan fungsi/bagian mana yang akan memproses request tersebut. Pada framework CI4, routing bertujuan untuk menentukan Controller mana yang harus merespon sebuah request. Controller
-adalah class atau script yang bertanggung jawab merespon sebuah request.
+Routing adalah proses untuk mengatur jalur dari sebuah request agar dapat diarahkan ke bagian atau fungsi tertentu yang akan memprosesnya. Dalam framework CodeIgniter 4 (CI4), routing berperan penting untuk menentukan Controller mana yang akan menangani suatu request.
+Controller sendiri merupakan class atau script yang bertugas merespons permintaan tersebut.
 
-Pada Codeigniter, request yang diterima oleh file index.php akan diarahkan ke Router untuk
-meudian oleh router tesebut diarahkan ke Controller.
+Di CodeIgniter, setiap request yang masuk melalui file index.php akan diteruskan ke Router, lalu oleh router tersebut diarahkan ke Controller yang sesuai.
 
-Router terletak pada file app/config/Routes.php
+File konfigurasi untuk Router berada di app/config/Routes.php.
 ![Routers](https://github.com/user-attachments/assets/d522d906-925f-48b2-9f3e-19f33b627a42)
 
 
