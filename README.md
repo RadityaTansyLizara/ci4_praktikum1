@@ -94,16 +94,9 @@ app/Controller/Home.php hilangkan titik koma pada akhir kode return view('welcom
 ## Memahami konsep MVC
 CodeIgniter menerapkan konsep MVC, singkatan dari Model-View-Controller. MVC adalah arsitektur yang sering digunakan dalam pengembangan aplikasi karena memisahkan kode program berdasarkan fungsinya, yaitu logika proses, data, dan tampilan.
 
-Logika proses ditempatkan dalam folder Controller,
+Logika proses ditempatkan dalam folder Controller, Data dikelola dalam folder Model, dan Tampilan antarmuka dikelola dalam folder View.
 
-Data dikelola dalam folder Model, dan
-
-Tampilan antarmuka dikelola dalam folder View.
-
-CodeIgniter juga menggunakan pendekatan pemrograman berorientasi objek dalam penerapan konsep MVC ini.
-
-Model berisi kode yang bertugas memodelkan data, baik yang berasal dari database maupun sumber lainnya.
-
+CodeIgniter juga menggunakan pendekatan pemrograman berorientasi objek dalam penerapan konsep MVC ini. Model berisi kode yang bertugas memodelkan data, baik yang berasal dari database maupun sumber lainnya.
 View berisi bagian kode yang menangani tampilan antarmuka pengguna. Dalam aplikasi web, ini biasanya melibatkan HTML dan CSS.
 
 Controller berfungsi sebagai pengatur logika proses. Ia menghubungkan antara View dan Model, menerima request dari pengguna, memproses data, lalu menampilkan hasil melalui View.
