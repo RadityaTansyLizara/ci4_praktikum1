@@ -12,11 +12,17 @@
 ## Langkah-langkah Praktikum
 ## Persiapan
 Berikut beberapa ekstensi yang perlu diaktifkan:
+
 • php-json ekstension untuk bekerja dengan JSON;
+
 • php-mysqlnd native driver untuk MySQL;
+
 • php-xml ekstension untuk bekerja dengan XML;
+
 • php-intl ekstensi untuk membuat aplikasi multibahasa;
+
 • libcurl (opsional), jika ingin pakai Curl.
+
 Untuk mengaktifkan ekstentsi tersebut, melalu XAMPP Control Panel, pada bagian Apache
 klik Config -> PHP.ini
 
