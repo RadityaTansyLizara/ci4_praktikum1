@@ -317,11 +317,11 @@ XAMPP.
 ###Membuat Database: Studi Kasus Data Artikel###
 ![Tabel Database](https://github.com/user-attachments/assets/4c9126d8-800d-431f-b974-859847e11074)
 
-```
+```php
 CREATE DATABASE lab_ci4;
 ```
 
-```
+```php
 CREATE TABLE artikel (
   id INT(11) auto_increment,
   judul VARCHAR(200) NOT NULL,
@@ -341,7 +341,7 @@ CREATE TABLE artikel (
 ### Membuat Model ###
 - Langkah berikutnya adalah membuat Model yang akan digunakan untuk mengelola data Artikel. Buatlah file baru dengan nama ArtikelModel.php di dalam folder app/Models.
 
-```
+```php
 <?php
 namespace App\Models;
 
@@ -359,7 +359,7 @@ class ArtikelModel extends Model
 ### Membuat Controller ###
 Silakan buat Controller baru dengan nama Artikel.php dan simpan di dalam folder app/Controllers.
 
-```
+```php
 <?php
 
 namespace App\Controllers;
@@ -381,7 +381,7 @@ class Artikel extends BaseController
 ### Membuat View ###
 Buat folder baru bernama artikel di dalam direktori app/views, lalu buat file baru bernama index.php di dalam folder tersebut.
 
-```
+```php
 <?= $this->include('template/header'); ?>
 
 <?php if($artikel): foreach($artikel as $row): ?>
@@ -419,7 +419,7 @@ Lakukan refresh pada browser untuk melihat hasil yang telah ditampilkan.
 ###Membuat Tampilan Detail Artikel###
 Saat judul berita diklik, tampilannya akan berpindah ke halaman berbeda. Untuk itu, tambahkan fungsi baru bernama **view()** di dalam Controller **Artikel**.
 
-```
+```php
 public function view($slug)
 {
     $model = new ArtikelModel();
@@ -441,7 +441,7 @@ public function view($slug)
 ###Membuat View Detail###
 - Buatlah view baru untuk halaman detail dengan nama detail.php di dalam folder app/views/artikel/.
 
-```
+```php
 <?= $this->include('template/header'); ?>
 
 <article class="entry">
@@ -456,7 +456,7 @@ $artikel['judul']; ?>">
 
 ###Membuat Routing untuk artikel detail###
 - Buka kembali file **app/config/Routes.php**, lalu tambahkan routing baru yang mengarah ke halaman detail artikel.
-```
+```php
 $routes->get('/artikel/(:any)', 'Artikel::view/$1');
 ```
 
@@ -464,7 +464,7 @@ $routes->get('/artikel/(:any)', 'Artikel::view/$1');
 
 ###Membuat menu admin###
 Menu admin adalah untuk proses CRUD data artikel. Buat method baru pada Controller Artikel dengan nama admin_index().
-```
+```php
 public function admin_index()
 {
     $title = 'Daftar Artikel';
@@ -476,7 +476,7 @@ public function admin_index()
 
 Selanjutnya buat view untuk tampilan admin dengan nama admin_index.php
 
-```
+```php
 <?= $this->include('template/admin_header'); ?>
 
 <table class="table">
@@ -523,7 +523,7 @@ Selanjutnya buat view untuk tampilan admin dengan nama admin_index.php
 
 Tambahkan routing untuk menu admin seperti berikut:
 
-```
+```php
 $routes->group('admin', function($routes) {
     $routes->get('artikel', 'Artikel::admin_index');
     $routes->add('artikel/add', 'Artikel::add');
