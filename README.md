@@ -532,9 +532,350 @@ $routes->group('admin', function($routes) {
 });
 ```
 
+
 Akses menu admin dengan url http://localhost:8080/admin/artikel
 
 ![Admin](https://github.com/user-attachments/assets/0b77f112-6615-4652-abfa-5415c196db28)
+
+
+###Membuat Data Artikel###
+Tambahkan fitur baru berupa method add() dalam Controller Artikel untuk mendukung fungsionalitas penambahan artikel.
+
+```php
+public function add()
+{
+    // validasi data.
+    $validation = \Config\Services::validation();
+    $validation->setRules(['judul' => 'required']);
+    $isDataValid = $validation->withRequest($this->request)->run();
+
+    if ($isDataValid)
+    {
+        $artikel = new ArtikelModel();
+        $artikel->insert([
+            'judul' => $this->request->getPost('judul'),
+            'isi' => $this->request->getPost('isi'),
+            'slug' => url_title($this->request->getPost('judul')),
+        ]);
+        return redirect('admin/artikel');
+    }
+    $title = "Tambah Artikel";
+    return view('artikel/form_add', compact('title'));
+}
+```
+
+Lanjutkan dengan membuat file view bernama form_add.php yang berisi form untuk menambahkan data baru.
+
+```php
+<?= $this->include('template/admin_header'); ?>
+
+<h2><?= $title; ?></h2>
+<form action="" method="post">
+    <p>
+        <input type="text" name="judul">
+    </p>
+    <p>
+        <textarea name="isi" cols="50" rows="10"></textarea>
+    </p>
+    <p><input type="submit" value="Kirim" class="btn btn-large"></p>
+</form>
+
+<?= $this->include('template/admin_footer'); ?>
+```
+
+![form_add](https://github.com/user-attachments/assets/74ef0d1c-8cd8-499e-9471-93e69dcd070e)
+
+###Mengubah Data###
+Lengkapi Controller Artikel dengan sebuah fungsi tambahan bernama edit() guna menangani perubahan data.
+
+```php
+public function edit($id)
+{
+    $artikel = new ArtikelModel();
+
+    // validasi data.
+    $validation = \Config\Services::validation();
+    $validation->setRules(['judul' => 'required']);
+    $isDataValid = $validation->withRequest($this->request)->run();
+
+    if ($isDataValid)
+    {
+        $artikel->update($id, [
+            'judul' => $this->request->getPost('judul'),
+            'isi' => $this->request->getPost('isi'),
+        ]);
+        return redirect('admin/artikel');
+    }
+
+    // ambil data lama
+    $data = $artikel->where('id', $id)->first();
+    $title = "Edit Artikel";
+    return view('artikel/form_edit', compact('title', 'data'));
+}
+```
+
+Selanjutnya, buat tampilan form untuk mengedit data dan simpan dengan nama form_edit.php.
+
+```php
+<?= $this->include('template/admin_header'); ?>
+
+<h2><?= $title; ?></h2>
+<form action="" method="post">
+    <p>
+        <input type="text" name="judul" value="<?= $data['judul'];?>" >
+    </p>
+    <p>
+        <textarea name="isi" cols="50" rows="10"><?=$data['isi'];?></textarea>
+    </p>
+    <p><input type="submit" value="Kirim" class="btn btn-large"></p>
+</form>
+
+<?= $this->include('template/admin_footer'); ?>
+```
+
+![form_edit2](https://github.com/user-attachments/assets/041b01ee-837d-43c4-a4f5-389f8106b84e)
+
+###Menghapus Data###
+Tambahkan method baru dengan nama delete() pada Controller Artikel untuk menangani proses penghapusan data.
+
+```php
+public function delete($id)
+{
+    $artikel = new ArtikelModel();
+    $artikel->delete($id);
+    return redirect('admin/artikel');
+}
+```
+
+#Praktikum 3: View Layout dan View Cell#
+
+##Langkah-Langkah Praktikum##
+
+###Persiapan###
+- Buka folder lab7_php_ci yang sudah digunakan pada praktikum sebelumnya.
+
+- Jalankan text editor seperti VSCode untuk mulai mengerjakan.
+
+###Membuat Layout Utama###
+- Di dalam direktori app/Views/, buat folder baru dan beri nama layout.
+
+- Selanjutnya, buat file baru bernama main.php di dalam folder layout.
+
+- Isi file main.php dengan struktur layout utama yang akan menjadi template dasar tampilan web.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?= $title ?? 'My Website' ?></title>
+    <link rel="stylesheet" href="<?= base_url('/style.css');?>"> 
+</head>
+<body>
+    <div id="container">
+        <header><h1>Layout Sederhana</h1></header>
+        <nav>
+            <a href="<?= base_url('/');?>" class="active">Home</a>
+            <a href="<?= base_url('/artikel');?>">Artikel</a>
+            <a href="<?= base_url('/about');?>">About</a>
+            <a href="<?= base_url('/contact');?>">Kontak</a>
+        </nav>
+        <section id="wrapper">
+            <section id="main">
+                <?= $this->renderSection('content') ?>
+            </section>
+            <aside id="sidebar">
+                <?= view_cell('App\\Cells\\ArtikelTerkini::render') ?>
+                <!-- Widget lainnya -->
+            </aside>
+        </section>
+        <footer><p>&copy; 2021 - Universitas Pelita Bangsa</p></footer>
+    </div>
+</body>
+</html>
+```
+
+###Modifikasi File View###
+Sesuaikan file app/Views/home.php agar menggunakan layout utama yang baru dibuat.
+
+```php
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
+<h1><?= $title; ?></h1>
+<hr>
+<p><?= $content; ?></p>
+
+<?= $this->endSection() ?>
+```
+
+###Menampilkan Data Dinamis dengan View Cell###
+View Cell merupakan fitur yang memungkinkan penggunaan tampilan sebagai komponen yang bisa dipakai berulang kali. Fitur ini sangat cocok untuk elemen-elemen seperti sidebar, widget, atau menu navigasi yang sering muncul di berbagai halaman.
+
+###Membuat class view cell###
+- Buat folder baru bernama Cells di dalam direktori app/.
+
+- Kemudian, buat file ArtikelTerkini.php di dalam folder app/Cells/ dengan kode seperti berikut:
+
+```php
+namespace App\Cells;
+
+use CodeIgniter\View\Cell;
+use App\Models\ArtikelModel;
+
+class ArtikelTerkini extends Cell
+{
+    public function render()
+    {
+        $model = new ArtikelModel();
+        $artikel = $model->orderBy('created_at', 'DESC')->limit(5)->findAll();
+        return view('components/artikel_terkini', ['artikel' => $artikel]);
+    }
+}
+```
+
+###Membuat view untuk view cell###
+- Buat folder components di dalam app/Views/.
+
+- Buat file artikel_terkini.php di dalam folder tersebut.
+
+```php
+<h3>Artikel Terkini</h3>
+<ul>
+<?php foreach ($artikel as $row): ?>
+    <li><a href="<?= base_url('/artikel/' . $row['slug']) ?>"><?= $row['judul'] ?></a></li>
+<?php endforeach; ?>
+</ul>
+```
+
+###Pertanyaan dan Tugas###
+##1. Sesuaikan data dengan praktikum sebelumnya, perlu melakukan perubahan field pada database dengan menambahkan tanggal agar dapat mengambil data artikel terbaru.##
+```php
+ALTER TABLE artikel ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+```
+
+![1](https://github.com/user-attachments/assets/595c7c6d-d6b6-4321-a743-c5433bdcb027)
+
+##2. Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.##
+
+##3. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?##
+View Layout menyediakan metode untuk menciptakan struktur tampilan yang konsisten pada seluruh halaman aplikasi. Dengan menggunakan layout, pengembang hanya perlu membuat satu file kerangka HTML (termasuk header, sidebar, dan footer), kemudian konten halaman dapat disisipkan ke dalam kerangka tersebut. Manfaat penggunaan layout antara lain:
+
+- Efisiensi waktu pengembangan
+
+- Kemudahan dalam pemeliharaan tampilan
+
+- Pengurangan duplikasi kode
+
+##4. Jelaskan perbedaan antara View Cell dan View biasa.##
+1. Fungsi:
+View Layout berperan sebagai template utama yang mengatur struktur tampilan secara keseluruhan, sedangkan View Cell adalah komponen modular yang dapat dipanggil di dalam tampilan.
+
+2. Fleksibilitas:
+View Layout digunakan untuk membangun halaman penuh, sementara View Cell lebih cocok digunakan untuk bagian kecil seperti sidebar atau widget.
+
+3. Pemakaian:
+View Layout biasanya diterapkan dengan metode extend() dan renderSection(), sedangkan View Cell dipanggil menggunakan fungsi view_cell().
+
+4. Contoh Penggunaan:
+View Layout digunakan untuk membuat layout utama website yang mencakup header, footer, dan sidebar, sedangkan View Cell cocok untuk menampilkan elemen seperti daftar artikel terbaru, widget pencarian, dan lain-lain.
+
+##5. Ubah View Cell agar hanya menampilkan post dengan kategori tertentu.##
+###Tahapan:
+- Masukkan field kategori ke tabel artikel.
+
+```php
+ALTER TABLE artikel ADD kategori VARCHAR(50);
+```
+![2](https://github.com/user-attachments/assets/2ed906d3-2c7a-4479-980d-77f8cb2ebc17)
+
+- Perbarui method render dengan menambahkan parameter kategori.
+
+```php
+public function render($kategori = null)
+{
+    $model = new ArtikelModel();
+    $query = $model->orderBy('created_at', 'DESC');
+
+    if ($kategori) {
+        $query->where('kategori', $kategori);
+    }
+
+    $artikel = $query->limit(5)->findAll();
+
+    return view('components/artikel_terkini', ['artikel' => $artikel]);
+}
+```
+
+- Isi setiap kolom di tabel bisa dilakukan secara manual atau melalui fitur tambah artikel.
+
+- Modifikasi View Cell agar bisa memfilter data berdasarkan kategori.
+
+- Buka file app/Cells/ArtikelTerkini.php lalu ubah fungsi render() menjadi seperti berikut:
+
+```php
+<?php
+
+namespace App\Cells;
+
+use App\Models\ArtikelModel;
+
+class ArtikelTerkini
+{
+    public function render($kategori = null)
+    {
+        $model = new ArtikelModel();
+
+        $query = $model->orderBy('created_at', 'DESC')->limit(5);
+        if ($kategori) {
+            $query->where('kategori', $kategori);
+        }
+
+        $artikel = $query->findAll();
+
+        return view('components/artikel_terkini', ['artikel' => $artikel]);
+    }
+}
+```
+
+- Pada file app/Views/layout/main.php, panggil View Cell beserta parameter kategori.
+
+```php
+<?= view_cell('App\\Cells\\ArtikelTerkini::render', ['kategori' => 'Teknologi']) ?>
+```
+
+- Tambahkan pengaturan route agar URL /kategori/teknologi berfungsi dengan baik.
+
+```php
+$routes->get('/kategori/(:segment)', 'Artikel::kategori/$1');
+``
+
+- Siapkan view kategori.php di dalam folder app/Views/artikel/.
+
+```php
+<?= $this->extend('layout/main') ?>
+<?= $this->section('content') ?>
+
+<h2><?= $title ?></h2>
+<ul>
+    <?php foreach ($artikel as $row): ?>
+        <li>
+            <a href="<?= base_url('/artikel/' . $row['slug']) ?>">
+                <?= esc($row['judul']) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+<?= $this->endSection() ?>
+```
+
+###Screenshot Hasil###
+![Olahraga2](https://github.com/user-attachments/assets/862f8397-b3a2-4e80-85d4-1aff74048c43)
+
+![Teknologi2](https://github.com/user-attachments/assets/ef82fb05-6f6d-44dd-9f68-3209e58b2641)
+
+
 
 
 
