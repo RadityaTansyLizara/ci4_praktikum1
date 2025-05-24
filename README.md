@@ -535,7 +535,8 @@ $routes->group('admin', function($routes) {
 
 Akses menu admin dengan url http://localhost:8080/admin/artikel
 
-![Admin](https://github.com/user-attachments/assets/0b77f112-6615-4652-abfa-5415c196db28)
+![Adminn2](https://github.com/user-attachments/assets/fffc0b28-214d-45a4-9eac-21dc869984c3)
+
 
 
 ### Membuat Data Artikel ###
@@ -584,7 +585,8 @@ Lanjutkan dengan membuat file view bernama form_add.php yang berisi form untuk m
 <?= $this->include('template/admin_footer'); ?>
 ```
 
-![form_add](https://github.com/user-attachments/assets/74ef0d1c-8cd8-499e-9471-93e69dcd070e)
+![form_add2](https://github.com/user-attachments/assets/361c94ab-0193-4825-a4d9-f5e716360175)
+
 
 ### Mengubah Data ###
 
