@@ -295,7 +295,7 @@ Selanjutnya refresh tampilan pada alamat http://localhost:8080/about
 ![Screenshot 2025-03-13 142448](https://github.com/user-attachments/assets/ebb95f40-087d-4923-8ce0-c9ff25ed2451)
 
 
-#Praktikum 2: Framework Lanjutan (CRUD) - CodeIgniter 4#
+# Praktikum 2: Framework Lanjutan (CRUD) - CodeIgniter 4 #
 
 Tujuan
 1. Mampu memahami konsep dasar Model.
@@ -309,12 +309,12 @@ Instruksi Praktikum
    
 Langkah-langkah Praktikum
 
-###Persiapan.###
+### Persiapan. ###
 Untuk memulai membuat aplikasi CRUD sederhana, yang perlu disiapkan adalah database
 server menggunakan MySQL. Pastikan MySQL Server sudah dapat dijalankan melalui
 XAMPP.
 
-###Membuat Database: Studi Kasus Data Artikel###
+### Membuat Database: Studi Kasus Data Artikel ###
 ![Tabel Database](https://github.com/user-attachments/assets/4c9126d8-800d-431f-b974-859847e11074)
 
 ```php
@@ -416,7 +416,7 @@ INSERT INTO artikel (judul, isi, slug) VALUE
 Lakukan refresh pada browser untuk melihat hasil yang telah ditampilkan.
 ![portalberita2](https://github.com/user-attachments/assets/29f98977-244e-4a39-8fa4-fbaa3ba478b4)
 
-###Membuat Tampilan Detail Artikel###
+### Membuat Tampilan Detail Artikel ###
 Saat judul berita diklik, tampilannya akan berpindah ke halaman berbeda. Untuk itu, tambahkan fungsi baru bernama **view()** di dalam Controller **Artikel**.
 
 ```php
@@ -438,7 +438,7 @@ public function view($slug)
 }
 ```
 
-###Membuat View Detail###
+### Membuat View Detail ###
 - Buatlah view baru untuk halaman detail dengan nama detail.php di dalam folder app/views/artikel/.
 
 ```php
@@ -454,7 +454,7 @@ $artikel['judul']; ?>">
 <?= $this->include('template/footer'); ?>
 ```
 
-###Membuat Routing untuk artikel detail###
+### Membuat Routing untuk artikel detail ###
 - Buka kembali file **app/config/Routes.php**, lalu tambahkan routing baru yang mengarah ke halaman detail artikel.
 ```php
 $routes->get('/artikel/(:any)', 'Artikel::view/$1');
@@ -462,7 +462,7 @@ $routes->get('/artikel/(:any)', 'Artikel::view/$1');
 
 ![Artikel2](https://github.com/user-attachments/assets/d0990eda-5bfe-40e1-8ea7-9ab02a541fbc)
 
-###Membuat menu admin###
+### Membuat menu admin ###
 Menu admin adalah untuk proses CRUD data artikel. Buat method baru pada Controller Artikel dengan nama admin_index().
 ```php
 public function admin_index()
