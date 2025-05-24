@@ -538,7 +538,8 @@ Akses menu admin dengan url http://localhost:8080/admin/artikel
 ![Admin](https://github.com/user-attachments/assets/0b77f112-6615-4652-abfa-5415c196db28)
 
 
-###Membuat Data Artikel###
+### Membuat Data Artikel ###
+
 Tambahkan fitur baru berupa method add() dalam Controller Artikel untuk mendukung fungsionalitas penambahan artikel.
 
 ```php
@@ -585,7 +586,8 @@ Lanjutkan dengan membuat file view bernama form_add.php yang berisi form untuk m
 
 ![form_add](https://github.com/user-attachments/assets/74ef0d1c-8cd8-499e-9471-93e69dcd070e)
 
-###Mengubah Data###
+### Mengubah Data ###
+
 Lengkapi Controller Artikel dengan sebuah fungsi tambahan bernama edit() guna menangani perubahan data.
 
 ```php
@@ -635,7 +637,8 @@ Selanjutnya, buat tampilan form untuk mengedit data dan simpan dengan nama form_
 
 ![form_edit2](https://github.com/user-attachments/assets/041b01ee-837d-43c4-a4f5-389f8106b84e)
 
-###Menghapus Data###
+### Menghapus Data ###
+
 Tambahkan method baru dengan nama delete() pada Controller Artikel untuk menangani proses penghapusan data.
 
 ```php
@@ -647,16 +650,18 @@ public function delete($id)
 }
 ```
 
-#Praktikum 3: View Layout dan View Cell#
+# Praktikum 3: View Layout dan View Cell #
 
-##Langkah-Langkah Praktikum##
+## Langkah-Langkah Praktikum ##
 
-###Persiapan###
+### Persiapan ###
+
 - Buka folder lab7_php_ci yang sudah digunakan pada praktikum sebelumnya.
 
 - Jalankan text editor seperti VSCode untuk mulai mengerjakan.
 
-###Membuat Layout Utama###
+### Membuat Layout Utama ###
+
 - Di dalam direktori app/Views/, buat folder baru dan beri nama layout.
 
 - Selanjutnya, buat file baru bernama main.php di dalam folder layout.
@@ -695,7 +700,8 @@ public function delete($id)
 </html>
 ```
 
-###Modifikasi File View###
+### Modifikasi File View ###
+
 Sesuaikan file app/Views/home.php agar menggunakan layout utama yang baru dibuat.
 
 ```php
@@ -709,10 +715,10 @@ Sesuaikan file app/Views/home.php agar menggunakan layout utama yang baru dibuat
 <?= $this->endSection() ?>
 ```
 
-###Menampilkan Data Dinamis dengan View Cell###
+### Menampilkan Data Dinamis dengan View Cell ###
 View Cell merupakan fitur yang memungkinkan penggunaan tampilan sebagai komponen yang bisa dipakai berulang kali. Fitur ini sangat cocok untuk elemen-elemen seperti sidebar, widget, atau menu navigasi yang sering muncul di berbagai halaman.
 
-###Membuat class view cell###
+### Membuat class view cell ###
 - Buat folder baru bernama Cells di dalam direktori app/.
 
 - Kemudian, buat file ArtikelTerkini.php di dalam folder app/Cells/ dengan kode seperti berikut:
@@ -734,7 +740,7 @@ class ArtikelTerkini extends Cell
 }
 ```
 
-###Membuat view untuk view cell###
+### Membuat view untuk view cell ###
 - Buat folder components di dalam app/Views/.
 
 - Buat file artikel_terkini.php di dalam folder tersebut.
@@ -748,17 +754,17 @@ class ArtikelTerkini extends Cell
 </ul>
 ```
 
-###Pertanyaan dan Tugas###
-##1. Sesuaikan data dengan praktikum sebelumnya, perlu melakukan perubahan field pada database dengan menambahkan tanggal agar dapat mengambil data artikel terbaru.##
+### Pertanyaan dan Tugas ###
+## 1. Sesuaikan data dengan praktikum sebelumnya, perlu melakukan perubahan field pada database dengan menambahkan tanggal agar dapat mengambil data artikel terbaru.##
 ```php
 ALTER TABLE artikel ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ```
 
 ![1](https://github.com/user-attachments/assets/595c7c6d-d6b6-4321-a743-c5433bdcb027)
 
-##2. Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.##
+## 2. Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.##
 
-##3. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?##
+## 3. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?##
 View Layout menyediakan metode untuk menciptakan struktur tampilan yang konsisten pada seluruh halaman aplikasi. Dengan menggunakan layout, pengembang hanya perlu membuat satu file kerangka HTML (termasuk header, sidebar, dan footer), kemudian konten halaman dapat disisipkan ke dalam kerangka tersebut. Manfaat penggunaan layout antara lain:
 
 - Efisiensi waktu pengembangan
@@ -767,7 +773,7 @@ View Layout menyediakan metode untuk menciptakan struktur tampilan yang konsiste
 
 - Pengurangan duplikasi kode
 
-##4. Jelaskan perbedaan antara View Cell dan View biasa.##
+## 4. Jelaskan perbedaan antara View Cell dan View biasa.##
 1. Fungsi:
 View Layout berperan sebagai template utama yang mengatur struktur tampilan secara keseluruhan, sedangkan View Cell adalah komponen modular yang dapat dipanggil di dalam tampilan.
 
@@ -780,8 +786,8 @@ View Layout biasanya diterapkan dengan metode extend() dan renderSection(), seda
 4. Contoh Penggunaan:
 View Layout digunakan untuk membuat layout utama website yang mencakup header, footer, dan sidebar, sedangkan View Cell cocok untuk menampilkan elemen seperti daftar artikel terbaru, widget pencarian, dan lain-lain.
 
-##5. Ubah View Cell agar hanya menampilkan post dengan kategori tertentu.##
-###Tahapan:
+## 5. Ubah View Cell agar hanya menampilkan post dengan kategori tertentu.##
+### Tahapan:
 - Masukkan field kategori ke tabel artikel.
 
 ```php
@@ -870,7 +876,7 @@ $routes->get('/kategori/(:segment)', 'Artikel::kategori/$1');
 <?= $this->endSection() ?>
 ```
 
-###Screenshot Hasil###
+### Screenshot Hasil###
 ![Olahraga2](https://github.com/user-attachments/assets/862f8397-b3a2-4e80-85d4-1aff74048c43)
 
 ![Teknologi2](https://github.com/user-attachments/assets/ef82fb05-6f6d-44dd-9f68-3209e58b2641)
