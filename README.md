@@ -754,17 +754,17 @@ class ArtikelTerkini extends Cell
 </ul>
 ```
 
-### Pertanyaan dan Tugas ###
-## 1. Sesuaikan data dengan praktikum sebelumnya, perlu melakukan perubahan field pada database dengan menambahkan tanggal agar dapat mengambil data artikel terbaru.##
+# Pertanyaan dan Tugas #
+## 1. Sesuaikan data dengan praktikum sebelumnya, perlu melakukan perubahan field pada database dengan menambahkan tanggal agar dapat mengambil data artikel terbaru. ##
 ```php
 ALTER TABLE artikel ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ```
 
 ![1](https://github.com/user-attachments/assets/595c7c6d-d6b6-4321-a743-c5433bdcb027)
 
-## 2. Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.##
+## 2. Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi. ##
 
-## 3. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi?##
+## 3. Apa manfaat utama dari penggunaan View Layout dalam pengembangan aplikasi? ##
 View Layout menyediakan metode untuk menciptakan struktur tampilan yang konsisten pada seluruh halaman aplikasi. Dengan menggunakan layout, pengembang hanya perlu membuat satu file kerangka HTML (termasuk header, sidebar, dan footer), kemudian konten halaman dapat disisipkan ke dalam kerangka tersebut. Manfaat penggunaan layout antara lain:
 
 - Efisiensi waktu pengembangan
@@ -773,7 +773,7 @@ View Layout menyediakan metode untuk menciptakan struktur tampilan yang konsiste
 
 - Pengurangan duplikasi kode
 
-## 4. Jelaskan perbedaan antara View Cell dan View biasa.##
+## 4. Jelaskan perbedaan antara View Cell dan View biasa. ##
 1. Fungsi:
 View Layout berperan sebagai template utama yang mengatur struktur tampilan secara keseluruhan, sedangkan View Cell adalah komponen modular yang dapat dipanggil di dalam tampilan.
 
@@ -786,7 +786,7 @@ View Layout biasanya diterapkan dengan metode extend() dan renderSection(), seda
 4. Contoh Penggunaan:
 View Layout digunakan untuk membuat layout utama website yang mencakup header, footer, dan sidebar, sedangkan View Cell cocok untuk menampilkan elemen seperti daftar artikel terbaru, widget pencarian, dan lain-lain.
 
-## 5. Ubah View Cell agar hanya menampilkan post dengan kategori tertentu.##
+## 5. Ubah View Cell agar hanya menampilkan post dengan kategori tertentu. ##
 ### Tahapan:
 - Masukkan field kategori ke tabel artikel.
 
@@ -876,7 +876,7 @@ $routes->get('/kategori/(:segment)', 'Artikel::kategori/$1');
 <?= $this->endSection() ?>
 ```
 
-### Screenshot Hasil###
+### Screenshot Hasil ###
 ![Olahraga2](https://github.com/user-attachments/assets/862f8397-b3a2-4e80-85d4-1aff74048c43)
 
 ![Teknologi2](https://github.com/user-attachments/assets/ef82fb05-6f6d-44dd-9f68-3209e58b2641)
