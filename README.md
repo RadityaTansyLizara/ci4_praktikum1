@@ -226,7 +226,8 @@ Pada dasarnya layout web dengan css dapat diimplamentasikan dengan mudah pada co
 
 Buat file css pada direktori public dengan nama style.css
 
-![alt text](image/style.png)
+![style](https://github.com/user-attachments/assets/d4a1c067-656f-4803-b332-84d556c04a3e)
+
 
 Kemudian buat folder template pada direktori view kemudian buat file header.php dan footer.php
 
