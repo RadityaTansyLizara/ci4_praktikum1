@@ -27,15 +27,18 @@ Untuk mengaktifkan ekstentsi tersebut, melalu XAMPP Control Panel, pada bagian A
 klik Config -> PHP.ini
 
 ### Catatan : mulai dari PHP 7.0, ekstensi JSON biasanya sudah termasuk secara bawaan.
-![alt text](image/ekstensi1.png)
+![ekstensi](https://github.com/user-attachments/assets/eb3c282b-dc3a-4620-8662-6fbdcaacd77c)
+
 
 
 Setelah itu, kalian bisa mencari ekstensi yang diperlukan. Jika ada ekstensi yang belum aktif, kalian bisa mengaktifkannya melalui XAMPP Control Panel dengan masuk ke bagian Apache, lalu klik Config dan pilih PHP.ini.
 
-![alt text](image/ekstensi2.png)
+![ekstensi2](https://github.com/user-attachments/assets/85e8f0c3-3794-4801-ba9e-63bc9b1cbf0f)
 
-![alt text](image/intl.png))
-* Sebagai contoh, di sini ekstensi extension=intl belum aktif. Untuk mengaktifkannya, cukup hapus tanda ; (titik koma) di awal baris ekstensi tersebut. Setelah itu, simpan kembali file tersebut dan lakukan restart pada Apache web server.
+
+![intl](https://github.com/user-attachments/assets/6198a895-f06b-4d71-a7eb-b5cd1acce8f9)
+
+Sebagai contoh, di sini ekstensi extension=intl belum aktif. Untuk mengaktifkannya, cukup hapus tanda ; (titik koma) di awal baris ekstensi tersebut. Setelah itu, simpan kembali file tersebut dan lakukan restart pada Apache web server.
 
 ## Instalasi Codeigniter 4
 
