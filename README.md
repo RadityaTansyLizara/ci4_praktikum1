@@ -165,7 +165,7 @@ class Page extends BaseController
 }
 ````
 
-![alt text](image/about.png)
+![about](https://github.com/user-attachments/assets/b5c66f87-86f5-4aa6-823b-14f47666daeb)
 
 #### Auto Routing
 Secara default fitur autoroute pada Codeiginiter sudah aktif. Untuk mengubah status autoroute dapat mengubah nilai variabelnya. Untuk menonaktifkan ubah nilai true menjadi false.
